@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mesin extends Model
 {
-    use HasFactory;
+    protected $table = 'mesin';
+
+    protected $fillable = [
+        'nama_mesin',
+        'tipe_mesin',
+        'status_mesin',
+        'lokasi',
+    ];
 }
