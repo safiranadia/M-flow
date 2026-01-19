@@ -2,64 +2,101 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produk;
 use Illuminate\Http\Request;
+use App\Models\Produk;
+use Illuminate\Support\Facades\Auth;
 
 class ProdukController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth'); // pastikan login dulu
+    }
+
+    // tampilkan daftar produk
     public function index()
     {
-        //
+        $user = Auth::user();
+
+        if ($user->role === 'admin_planning') {
+            // admin lihat semua produk
+            $produks = Produk::all();
+        } else {
+            // operator cuma lihat produk yang target produksinya > 0
+            $produks = Produk::where('target_produksi', '>', 0)->get();
+        }
+
+        return view('produk.index', compact('produks', 'user'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // form tambah produk
     public function create()
     {
-        //
+        if (Auth::user()->role !== 'admin_planning') {
+            abort(403); // operator tidak boleh
+        }
+
+        return view('produk.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // simpan produk baru
     public function store(Request $request)
     {
-        //
+        if (Auth::user()->role !== 'admin_planning') {
+            abort(403);
+        }
+
+        $request->validate([
+            'nama_produk' => 'required|string|max:255',
+            'spesifikasi' => 'nullable|string',
+            'target_produksi' => 'nullable|integer',
+        ]);
+
+        Produk::create($request->all());
+
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil ditambahkan.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Produk $produk)
+    // form edit produk
+    public function edit($id)
     {
-        //
+        if (Auth::user()->role !== 'admin_planning') {
+            abort(403);
+        }
+
+        $produk = Produk::findOrFail($id);
+        return view('produk.edit', compact('produk'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Produk $produk)
+    // update produk
+    public function update(Request $request, $id)
     {
-        //
+        if (Auth::user()->role !== 'admin_planning') {
+            abort(403);
+        }
+
+        $request->validate([
+            'nama_produk' => 'required|string|max:255',
+            'spesifikasi' => 'nullable|string',
+            'target_produksi' => 'nullable|integer',
+        ]);
+
+        $produk = Produk::findOrFail($id);
+        $produk->update($request->all());
+
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil diupdate.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Produk $produk)
+    // hapus produk
+    public function destroy($id)
     {
-        //
-    }
+        if (Auth::user()->role !== 'admin_planning') {
+            abort(403);
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Produk $produk)
-    {
-        //
+        $produk = Produk::findOrFail($id);
+        $produk->delete();
+
+        return redirect()->route('produk.index')->with('success', 'Produk berhasil dihapus.');
     }
 }

@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('email')->unique();
             $table->string('password');
-            $table->enum('role', ['admin', 'operator']);
+            $table->enum('role', ['admin_planning', 'operator_lapangan']);
             $table->timestamps();
         });
     }
