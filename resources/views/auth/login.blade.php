@@ -16,7 +16,7 @@
                 <!-- Header -->
                 <div class="text-center mb-8">
                     <h2 class="text-2xl sm:text-3xl font-bold text-purple-600">
-                        M-Flow
+                    Machine Flow
                     </h2>
                     <p class="mt-2 text-sm sm:text-base text-gray-600">
                         Please sign in to your account
