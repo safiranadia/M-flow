@@ -10,7 +10,7 @@ class ProdukController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth'); // pastikan login dulu
+        $this->middleware('auth');
     }
 
     // tampilkan daftar produk
@@ -19,24 +19,23 @@ class ProdukController extends Controller
         $user = Auth::user();
 
         if ($user->role === 'admin_planning') {
-            // admin lihat semua produk
             $produks = Produk::all();
         } else {
-            // operator cuma lihat produk yang target produksinya > 0
             $produks = Produk::where('target_produksi', '>', 0)->get();
         }
 
-        return view('produk.index', compact('produks', 'user'));
+        // ✅ arahkan ke FE kamu
+        return view('pages.produksi', compact('produks', 'user'));
     }
 
     // form tambah produk
     public function create()
     {
         if (Auth::user()->role !== 'admin_planning') {
-            abort(403); // operator tidak boleh
+            abort(403);
         }
 
-        return view('produk.create');
+        return view('pages.from-create-produksi');
     }
 
     // simpan produk baru
@@ -65,7 +64,8 @@ class ProdukController extends Controller
         }
 
         $produk = Produk::findOrFail($id);
-        return view('produk.edit', compact('produk'));
+
+        return view('pages.from-edit-produksi', compact('produk'));
     }
 
     // update produk

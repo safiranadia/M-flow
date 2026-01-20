@@ -1,20 +1,53 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\MesinController;
 
-// halaman dashboard (FE temanmu bisa pakai route ini)
+/*
+|--------------------------------------------------------------------------
+| ROOT → ARAHKAN KE LOGIN
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/', function () {
+    return redirect('/login');
+});
+
+/*
+|--------------------------------------------------------------------------
+| AUTH
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/login', [AuthController::class, 'login'])
+    ->name('login')
+    ->middleware('guest');
+
+Route::post('/login', [AuthController::class, 'authenticate'])
+    ->middleware('guest');
+
+Route::post('/logout', [AuthController::class, 'logout'])
+    ->middleware('auth');
+
+/*
+|--------------------------------------------------------------------------
+| DASHBOARD
+|--------------------------------------------------------------------------
+*/
+
 Route::get('/dashboard', function () {
-    return view('dashboard'); // FE nanti handle tampilan
+    return view('pages.dashboard');
 })->middleware('auth')->name('dashboard');
 
-// Resource routes untuk User (hanya admin bisa akses di controller)
+/*
+|--------------------------------------------------------------------------
+| RESOURCE CRUD
+|--------------------------------------------------------------------------
+*/
+
 Route::resource('users', UserController::class)->middleware('auth');
-
-// Resource routes untuk Produk
 Route::resource('produk', ProdukController::class)->middleware('auth');
-
-// Resource routes untuk Mesin
 Route::resource('mesin', MesinController::class)->middleware('auth');

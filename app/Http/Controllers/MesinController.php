@@ -10,7 +10,7 @@ class MesinController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth'); // pastikan login
+        $this->middleware('auth');
     }
 
     // daftar mesin
@@ -24,7 +24,8 @@ class MesinController extends Controller
             $mesins = Mesin::where('status_mesin', 'aktif')->get();
         }
 
-        return view('mesin.index', compact('mesins', 'user'));
+        // ✅ arahkan ke FE kamu
+        return view('pages.mesin', compact('mesins', 'user'));
     }
 
     // form tambah mesin
@@ -34,7 +35,7 @@ class MesinController extends Controller
             abort(403);
         }
 
-        return view('mesin.create');
+        return view('pages.from-create-mesin');
     }
 
     // simpan mesin baru
@@ -64,7 +65,8 @@ class MesinController extends Controller
         }
 
         $mesin = Mesin::findOrFail($id);
-        return view('mesin.edit', compact('mesin'));
+
+        return view('pages.from-edit-mesin', compact('mesin'));
     }
 
     // update mesin
