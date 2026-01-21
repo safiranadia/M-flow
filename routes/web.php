@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\MesinController;
+use App\Http\Controllers\ProductionScheduleController;
+use App\Http\Controllers\ProductionMonitoringController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +60,15 @@ Route::resource('mesin', MesinController::class)->middleware('auth');
 |--------------------------------------------------------------------------
 */
 
-Route::get('/jadwal_produksi', [App\Http\Controllers\ProductionScheduleController::class, 'index'])->name('jadwal_produksi.index');
-Route::get('/jadwal_produksi/create', [App\Http\Controllers\ProductionScheduleController::class, 'create'])->name('jadwal_produksi.create');
-Route::post('/jadwal_produksi', [App\Http\Controllers\ProductionScheduleController::class, 'store'])->name('jadwal_produksi.store');
+Route::resource('jadwal_produksi', ProductionScheduleController::class);
+Route::get('/jadwal_produksi', ProductionScheduleController::class, 'index')->name('jadwal_produksi.index');
+Route::get('/jadwal_produksi/create', ProductionScheduleController::class, 'create')->name('jadwal_produksi.create');
+Route::post('/jadwal_produksi', ProductionScheduleController::class, 'store')->name('jadwal_produksi.store');
+
+/*
+|--------------------------------------------------------------------------
+| MONITORING PRODUKSI
+|--------------------------------------------------------------------------
+*/
+
+Route::resource('monitoring', ProductionMonitoringController::class);

@@ -9,6 +9,8 @@ class ProductionSchedule extends Model
 {
     use HasFactory;
 
+    protected $table = 'production_schedules';
+
     protected $fillable = [
         'mesin_id',
         'produk_id',
@@ -17,4 +19,19 @@ class ProductionSchedule extends Model
         'shift',
         'status'
     ];
+
+    public function mesin()
+    {
+        return $this->belongsTo(Mesin::class, 'mesin_id');
+    }
+
+    public function produk()
+    {
+        return $this->belongsTo(Produk::class, 'produk_id');
+    }
+
+    public function monitorings()
+    {
+        return $this->hasMany(ProductionMonitoring::class);
+    }
 }
