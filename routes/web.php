@@ -5,6 +5,10 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\MesinController;
 
+Route::get('/', function () {
+    return view('auth.login');
+});
+
 // halaman dashboard (FE temanmu bisa pakai route ini)
 Route::get('/dashboard', function () {
     return view('dashboard'); // FE nanti handle tampilan
@@ -18,3 +22,5 @@ Route::resource('produk', ProdukController::class)->middleware('auth');
 
 // Resource routes untuk Mesin
 Route::resource('mesin', MesinController::class)->middleware('auth');
+
+

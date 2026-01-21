@@ -50,7 +50,18 @@
                 <td class="p-4">500 unit</td>
                 <td class="p-4">
                     <span class="px-3 py-1 rounded-full bg-green-100 text-black-700 text-xs">
-                        Produksi
+                        Aktif
+                    </span>
+                </td>
+            </tr>
+
+            <tr class="border-t hover:bg-gray-50">
+                <td class="p-4">Mc-001</td>
+                <td class="p-4">Penggaris 30CM</td>
+                <td class="p-4">500 unit</td>
+                <td class="p-4">
+                    <span class="px-3 py-1 rounded-full bg-yellow-100 text-black-700 text-xs">
+                        Maintenance
                     </span>
                 </td>
             </tr>
@@ -62,17 +73,6 @@
                 <td class="p-4">
                     <span class="px-3 py-1 rounded-full bg-red-100 text-black-700 text-xs">
                         Trouble
-                    </span>
-                </td>
-            </tr>
-
-            <tr class="border-t hover:bg-gray-50">
-                <td class="p-4">Mc-001</td>
-                <td class="p-4">Penggaris 30CM</td>
-                <td class="p-4">500 unit</td>
-                <td class="p-4">
-                    <span class="px-3 py-1 rounded-full bg-yellow-100 text-black-700 text-xs">
-                        Pending
                     </span>
                 </td>
             </tr>
@@ -89,10 +89,6 @@
     <div>
         <h3 class="text-xl font-bold text-purple-700">Admin MachineFlow</h3>
         <p class="text-gray-500">Administrator</p>
-        <button
-            class="mt-2 bg-purple-600 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-700">
-            Edit Profile
-        </button>
     </div>
 </div>
 

@@ -7,7 +7,7 @@
 
         <!-- Title -->
         <h2 class="text-2xl font-bold text-purple-700 mb-6">
-            Tambah Mesin 
+            Tambah Data Mesin
         </h2>
 
         <form>
@@ -17,8 +17,11 @@
                 <label class="block text-sm font-medium text-gray-600 mb-1">
                     Kode Mesin
                 </label>
-                <input type="text" placeholder="MC-001"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                <input 
+                    type="text" 
+                    placeholder="MC-001"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
+                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
             </div>
 
             <!-- Tipe Mesin -->
@@ -27,7 +30,8 @@
                     Tipe Mesin
                 </label>
                 <select
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
+                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
                     <option>NISSEI</option>
                     <option>MITSUBISHI</option>
                     <option>TOYO</option>
@@ -40,26 +44,37 @@
                 <label class="block text-sm font-medium text-gray-600 mb-1">
                     Nama Produk
                 </label>
-                <input type="text" placeholder="Penggaris 30CM"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                <input 
+                    type="text" 
+                    placeholder="Penggaris 30CM"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
+                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
             </div>
 
-            <!-- Operator -->
+            <!-- Kapasitas Mesin -->
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Operator
-                </label>
-                <input type="text" placeholder="Sukiyo"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-            </div>
-
-            <!-- Kapasitas -->
-            <div class="mb-6">
                 <label class="block text-sm font-medium text-gray-600 mb-1">
                     Kapasitas Mesin (Ton)
                 </label>
-                <input type="number" placeholder="500"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                <input 
+                    type="number" 
+                    placeholder="500"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
+                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
+            </div>
+
+            <!-- Status Mesin -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-600 mb-1">
+                    Status Mesin
+                </label>
+                <select
+                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
+                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                    <option value="aktif">Aktif</option>
+                    <option value="maintenance">Maintenance</option>
+                    <option value="trouble">Trouble</option>
+                </select>
             </div>
 
             <!-- Button -->

@@ -8,7 +8,7 @@
 
         <!-- Title -->
         <h2 class="text-xl font-bold text-purple-700 mb-6">
-            Monitoring Mesin & Produksi
+            Buat Hasil Monitoring Hari ini?
         </h2>
 
         <!-- Form -->

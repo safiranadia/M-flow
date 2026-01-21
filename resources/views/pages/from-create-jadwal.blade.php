@@ -7,7 +7,7 @@
 
         <!-- Title -->
         <h2 class="text-xl font-bold text-purple-700 mb-6">
-            Tambah Rencana Produksi
+            Buat Jadwal Produksi Hari ini?
         </h2>
 
         <!-- Form -->
