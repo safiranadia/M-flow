@@ -74,6 +74,7 @@
                     <option>Aktif</option>
                     <option selected>Maintenance</option>
                     <option>Trouble</option>
+                    <option>Nonaktif</option>
                 </select>
             </div>
 
