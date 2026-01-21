@@ -51,3 +51,13 @@ Route::get('/dashboard', function () {
 Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('produk', ProdukController::class)->middleware('auth');
 Route::resource('mesin', MesinController::class)->middleware('auth');
+
+/*
+|--------------------------------------------------------------------------
+| JADWAL PRODUKSI
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/jadwal_produksi', [App\Http\Controllers\ProductionScheduleController::class, 'index'])->name('jadwal_produksi.index');
+Route::get('/jadwal_produksi/create', [App\Http\Controllers\ProductionScheduleController::class, 'create'])->name('jadwal_produksi.create');
+Route::post('/jadwal_produksi', [App\Http\Controllers\ProductionScheduleController::class, 'store'])->name('jadwal_produksi.store');
