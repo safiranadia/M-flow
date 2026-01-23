@@ -72,3 +72,4 @@ Route::post('/jadwal_produksi', ProductionScheduleController::class, 'store')->n
 */
 
 Route::resource('monitoring', ProductionMonitoringController::class);
+Route::get('/monitoring', ProductionMonitoringController::class, 'index')->name('monitoring.index');

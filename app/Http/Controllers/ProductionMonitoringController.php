@@ -42,10 +42,18 @@ class ProductionMonitoringController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'hasil_produksi' => 'required|integer',
+            'status' => 'required|string',
+        ]);
+
         $monitorings = ProductionMonitoring::findOrFail($id);
-        $monitorings->update($request->all());
+        $monitorings->update([
+            'hasil_produksi' => $request->hasil_produksi,
+            'status' => $request->status
+        ]);
 
         return redirect()->route('monitoring.index')
-            ->with('success', 'Data Monitoring produksi berhasil diperbarui');
+            ->with('success', 'Data Monitoring & status berhasil diperbarui');
     }
 }
