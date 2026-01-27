@@ -1,97 +1,38 @@
 @extends('layouts.index')
-@section('title','')
+
 @section('content')
 
-<div class="max-w-3xl mx-auto mt-10">
-    <div class="bg-white rounded-xl shadow p-6">
+<h2 class="text-xl font-bold mb-4">Tambah Mesin</h2>
 
-        <!-- Title -->
-        <h2 class="text-2xl font-bold text-purple-700 mb-6">
-            Tambah Data Mesin
-        </h2>
+<form method="POST" action="{{ route('mesin.store') }}">
+    @csrf
 
-        <form>
-
-            <!-- Kode Mesin -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Kode Mesin
-                </label>
-                <input 
-                    type="text" 
-                    placeholder="MC-001"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
-                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
-            </div>
-
-            <!-- Tipe Mesin -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Tipe Mesin
-                </label>
-                <select
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
-                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                    <option>NISSEI</option>
-                    <option>MITSUBISHI</option>
-                    <option>TOYO</option>
-                    <option>SUMITOMO</option>
-                </select>
-            </div>
-
-            <!-- Nama Produk -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Nama Produk
-                </label>
-                <input 
-                    type="text" 
-                    placeholder="Penggaris 30CM"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
-                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
-            </div>
-
-            <!-- Kapasitas Mesin -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Kapasitas Mesin (Ton)
-                </label>
-                <input 
-                    type="number" 
-                    placeholder="500"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
-                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
-            </div>
-
-            <!-- Status Mesin -->
-            <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Status Mesin
-                </label>
-                <select
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
-                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                    <option value="aktif">Aktif</option>
-                    <option value="maintenance">Maintenance</option>
-                    <option value="trouble">Trouble</option>
-                </select>
-            </div>
-
-            <!-- Button -->
-            <div class="flex justify-end gap-3">
-                <a href="#"
-                    class="px-4 py-2 rounded-lg border text-gray-600 hover:bg-gray-100">
-                    Batal
-                </a>
-                <button type="submit"
-                    class="px-4 py-2 rounded-lg bg-purple-600 text-white hover:bg-purple-700">
-                    Simpan
-                </button>
-            </div>
-
-        </form>
-
+    <div class="mb-3">
+        <label>Nama Mesin</label>
+        <input type="text" name="nama_mesin" class="w-full border p-2">
     </div>
-</div>
+
+    <div class="mb-3">
+        <label>Tipe Mesin</label>
+        <input type="text" name="tipe_mesin" class="w-full border p-2">
+    </div>
+
+    <div class="mb-3">
+        <label>Status</label>
+        <select name="status_mesin" class="w-full border p-2">
+            <option value="aktif">Aktif</option>
+            <option value="maintenance">Maintenance</option>
+            <option value="nonaktif">Nonaktif</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Lokasi</label>
+        <input type="text" name="lokasi" class="w-full border p-2">
+    </div>
+
+    <button class="px-4 py-2 bg-purple-600 text-white rounded">Simpan</button>
+
+</form>
 
 @endsection

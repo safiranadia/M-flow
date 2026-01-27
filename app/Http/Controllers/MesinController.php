@@ -13,43 +13,57 @@ class MesinController extends Controller
         $this->middleware('auth');
     }
 
-    // daftar mesin
-    public function index()
+    // GET: mesin list (view + json optional)
+    public function index(Request $request)
     {
         $user = Auth::user();
 
-        if ($user->role === 'admin_planning') {
-            $mesins = Mesin::all();
-        } else {
-            $mesins = Mesin::where('status_mesin', 'aktif')->get();
+        $mesins = ($user->role === 'admin_planning')
+            ? Mesin::orderBy('nama_mesin')->get()
+            : Mesin::where('status_mesin', 'aktif')->orderBy('nama_mesin')->get();
+
+        // kalau FE minta json
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => true,
+                'data' => $mesins
+            ]);
         }
 
-        // ✅ arahkan ke FE kamu
         return view('pages.mesin', compact('mesins', 'user'));
     }
 
-    // form tambah mesin
+    // GET: detail mesin
+    public function show(Request $request, $id)
+    {
+        $mesin = Mesin::findOrFail($id);
+
+        if ($request->wantsJson()) {
+            return response()->json([
+                'status' => true,
+                'data' => $mesin
+            ]);
+        }
+
+        return view('pages.detail-mesin', compact('mesin'));
+    }
+
     public function create()
     {
-        if (Auth::user()->role !== 'admin_planning') {
-            abort(403);
-        }
+        $this->authorizeAdmin();
 
         return view('pages.from-create-mesin');
     }
 
-    // simpan mesin baru
     public function store(Request $request)
     {
-        if (Auth::user()->role !== 'admin_planning') {
-            abort(403);
-        }
+        $this->authorizeAdmin();
 
         $request->validate([
             'nama_mesin' => 'required|string|max:255',
-            'tipe_mesin' => 'nullable|string',
+            'tipe_mesin' => 'nullable|string|max:255',
             'status_mesin' => 'required|in:aktif,maintenance,nonaktif',
-            'lokasi' => 'nullable|string',
+            'lokasi' => 'nullable|string|max:255',
         ]);
 
         Mesin::create($request->all());
@@ -57,30 +71,24 @@ class MesinController extends Controller
         return redirect()->route('mesin.index')->with('success', 'Mesin berhasil ditambahkan.');
     }
 
-    // form edit mesin
     public function edit($id)
     {
-        if (Auth::user()->role !== 'admin_planning') {
-            abort(403);
-        }
+        $this->authorizeAdmin();
 
         $mesin = Mesin::findOrFail($id);
 
         return view('pages.from-edit-mesin', compact('mesin'));
     }
 
-    // update mesin
     public function update(Request $request, $id)
     {
-        if (Auth::user()->role !== 'admin_planning') {
-            abort(403);
-        }
+        $this->authorizeAdmin();
 
         $request->validate([
             'nama_mesin' => 'required|string|max:255',
-            'tipe_mesin' => 'nullable|string',
+            'tipe_mesin' => 'nullable|string|max:255',
             'status_mesin' => 'required|in:aktif,maintenance,nonaktif',
-            'lokasi' => 'nullable|string',
+            'lokasi' => 'nullable|string|max:255',
         ]);
 
         $mesin = Mesin::findOrFail($id);
@@ -89,16 +97,20 @@ class MesinController extends Controller
         return redirect()->route('mesin.index')->with('success', 'Mesin berhasil diupdate.');
     }
 
-    // hapus mesin
     public function destroy($id)
     {
-        if (Auth::user()->role !== 'admin_planning') {
-            abort(403);
-        }
+        $this->authorizeAdmin();
 
         $mesin = Mesin::findOrFail($id);
         $mesin->delete();
 
         return redirect()->route('mesin.index')->with('success', 'Mesin berhasil dihapus.');
+    }
+
+    private function authorizeAdmin()
+    {
+        if (Auth::user()->role !== 'admin_planning') {
+            abort(403);
+        }
     }
 }
