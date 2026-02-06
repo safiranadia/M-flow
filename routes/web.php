@@ -10,20 +10,16 @@ use App\Http\Controllers\ProductionMonitoringController;
 
 /*
 |--------------------------------------------------------------------------
-| ROOT → ARAHKAN KE LOGIN
+| ROOT → LOGIN
 |--------------------------------------------------------------------------
 */
-
-Route::get('/', function () {
-    return redirect('/login');
-});
+Route::get('/', fn () => redirect('/login'));
 
 /*
 |--------------------------------------------------------------------------
 | AUTH
 |--------------------------------------------------------------------------
 */
-
 Route::get('/login', [AuthController::class, 'login'])
     ->name('login')
     ->middleware('guest');
@@ -39,37 +35,32 @@ Route::post('/logout', [AuthController::class, 'logout'])
 | DASHBOARD
 |--------------------------------------------------------------------------
 */
-
-Route::get('/dashboard', function () {
-    return view('pages.dashboard');
-})->middleware('auth')->name('dashboard');
+Route::get('/dashboard', fn () => view('pages.dashboard'))
+    ->middleware('auth')
+    ->name('dashboard');
 
 /*
 |--------------------------------------------------------------------------
-| RESOURCE CRUD
+| CRUD RESOURCES
 |--------------------------------------------------------------------------
 */
-
 Route::resource('users', UserController::class)->middleware('auth');
 Route::resource('produk', ProdukController::class)->middleware('auth');
-Route::resource('mesin', MesinController::class)->middleware('auth');
-
+Route::middleware('auth')->group(function(){
+    Route::resource('mesin', MesinController::class);
+});
 /*
 |--------------------------------------------------------------------------
-| JADWAL PRODUKSI
+| JADWAL PRODUKSI (CRUD → resource lengkap)
 |--------------------------------------------------------------------------
 */
-
-Route::resource('jadwal_produksi', ProductionScheduleController::class);
-Route::get('/jadwal_produksi', ProductionScheduleController::class, 'index')->name('jadwal_produksi.index');
-Route::get('/jadwal_produksi/create', ProductionScheduleController::class, 'create')->name('jadwal_produksi.create');
-Route::post('/jadwal_produksi', ProductionScheduleController::class, 'store')->name('jadwal_produksi.store');
+Route::resource('jadwal_produksi', ProductionScheduleController::class)
+    ->middleware('auth');
 
 /*
 |--------------------------------------------------------------------------
 | MONITORING PRODUKSI
 |--------------------------------------------------------------------------
 */
-
-Route::resource('monitoring', ProductionMonitoringController::class);
-Route::get('/monitoring', ProductionMonitoringController::class, 'index')->name('monitoring.index');
+Route::resource('monitoring', ProductionMonitoringController::class)
+    ->middleware('auth');

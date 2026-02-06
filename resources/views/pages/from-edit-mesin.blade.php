@@ -1,98 +1,39 @@
 @extends('layouts.index')
-@section('title','')
+
 @section('content')
 
-<div class="max-w-3xl mx-auto mt-10">
-    <div class="bg-white rounded-xl shadow p-6">
+<h2 class="text-xl font-bold mb-4">Edit Mesin</h2>
 
-        <!-- Title -->
-        <h2 class="text-2xl font-bold text-purple-700 mb-6">
-            Edit Data Mesin
-        </h2>
+<form method="POST" action="{{ route('mesin.update', $mesin->id) }}">
+    @csrf
+    @method('PUT')
 
-        <form>
-
-            <!-- Kode Mesin -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Kode Mesin
-                </label>
-                <input 
-                    type="text" 
-                    value="MC-002"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
-                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
-            </div>
-
-            <!-- Tipe Mesin -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Tipe Mesin
-                </label>
-                <select
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
-                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                    <option>NISSEI</option>
-                    <option selected>MITSUBISHI</option>
-                    <option>TOYO</option>
-                    <option>SUMITOMO</option>
-                </select>
-            </div>
-
-            <!-- Nama Produk -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Nama Produk
-                </label>
-                <input 
-                    type="text" 
-                    value="Penggaris 30CM"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
-                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
-            </div>
-
-            <!-- Kapasitas Mesin -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Kapasitas Mesin (Ton)
-                </label>
-                <input 
-                    type="number" 
-                    value="500"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
-                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
-            </div>
-
-            <!-- Status Mesin -->
-            <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Status Mesin
-                </label>
-                <select
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 
-                    focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                    <option>Aktif</option>
-                    <option selected>Maintenance</option>
-                    <option>Trouble</option>
-                    <option>Nonaktif</option>
-                </select>
-            </div>
-
-            <!-- Button -->
-            <div class="flex justify-end gap-3">
-                <a href="#"
-                    class="px-4 py-2 rounded-lg border text-gray-600 hover:bg-gray-100">
-                    Batal
-                </a>
-                <button type="submit"
-                    class="px-4 py-2 rounded-lg bg-purple-600 text-white hover:bg-purple-700">
-                    Update
-                </button>
-            </div>
-
-        </form>
-
+    <div class="mb-3">
+        <label>Nama Mesin</label>
+        <input type="text" name="nama_mesin" value="{{ $mesin->nama_mesin }}" class="w-full border p-2">
     </div>
-</div>
+
+    <div class="mb-3">
+        <label>Tipe Mesin</label>
+        <input type="text" name="tipe_mesin" value="{{ $mesin->tipe_mesin }}" class="w-full border p-2">
+    </div>
+
+    <div class="mb-3">
+        <label>Status</label>
+        <select name="status_mesin" class="w-full border p-2">
+            <option value="aktif" {{ $mesin->status_mesin=='aktif'?'selected':'' }}>Aktif</option>
+            <option value="maintenance" {{ $mesin->status_mesin=='maintenance'?'selected':'' }}>Maintenance</option>
+            <option value="nonaktif" {{ $mesin->status_mesin=='nonaktif'?'selected':'' }}>Nonaktif</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Lokasi</label>
+        <input type="text" name="lokasi" value="{{ $mesin->lokasi }}" class="w-full border p-2">
+    </div>
+
+    <button class="px-4 py-2 bg-purple-600 text-white rounded">Update</button>
+
+</form>
 
 @endsection

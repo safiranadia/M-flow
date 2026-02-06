@@ -15,6 +15,10 @@ return new class extends Migration
             $table->enum('status_mesin', ['aktif', 'maintenance', 'nonaktif'])->default('aktif');
             $table->string('lokasi')->nullable();
             $table->timestamps();
+
+            // optional: untuk optimasi relasi ke jadwal produksi
+            $table->index('status_mesin');
+            $table->index('nama_mesin');
         });
     }
 
