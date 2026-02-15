@@ -5,14 +5,14 @@
 <div class="flex justify-between items-center mb-6">
     <h2 class="text-2xl font-bold text-gray-700"></h2>
     <button class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700">
-        + Tambah Produksi
+        + Tambah Produk
     </button>
 </div>
 <div class="bg-white rounded-lg shadow overflow-x-auto">
     <table class="w-full text-sm">
         <thead class="bg-purple-100">
             <tr>
-                <th class="p-4 text-left">Kode Produksi</th>
+                <th class="p-4 text-left">Kode Produk</th>
                 <th class="p-4 text-left">Nama Produk</th>
                 <th class="p-4 text-left">Kode Mesin</th>
                 <th class="p-4 text-left">Tanggal mulai</th>
