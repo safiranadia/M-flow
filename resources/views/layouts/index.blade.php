@@ -19,70 +19,55 @@
 
       <nav class="mt-6 text-sm">
 
+    <!-- Dashboard -->
+    <a href="{{ route('dashboard') }}"
+       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
+        Dashboard
+    </a>
 
-        <a href="#" class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-          <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M3 12l9-9 9 9M4 10v10h6v-6h4v6h6V10" />
-          </svg>
-          Dashboard
-        </a>
+    <!-- Produk -->
+    <a href="{{ route('produk.index') }}"
+       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
+        Produk
+    </a>
 
-        <a href="#" class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-          <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7H3v12a2 2 0 002 2z" />
-          </svg>
-          Jadwal
-        </a>
+    <!-- Mesin -->
+    <a href="{{ route('mesin.index') }}"
+       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
+        Mesin
+    </a>
 
+    <!-- Jadwal Produksi -->
+    <a href="{{ route('jadwal_produksi.index') }}"
+       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
+        Jadwal Produksi
+    </a>
 
-        <a href="#" class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-          <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M9 17v-6h13v6M3 17h6V7H3v10z" />
-          </svg>
-          Produksi
-        </a>
+    <!-- Monitoring -->
+    <a href="{{ route('monitoring.index') }}"
+       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
+        Monitoring
+    </a>
 
+    <!-- Users (kalau admin saja) -->
+    @if(auth()->user()->role == 'admin_planning')
+    <a href="{{ route('users.index') }}"
+       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
+        Users
+    </a>
+    @endif
 
-        <a href="#" class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-          <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7H3v12a2 2 0 002 2z" />
-          </svg>
-          Jadwal
-        </a>
+    <!-- Logout -->
+    <form action="/logout" method="POST">
+        @csrf
+        <button type="submit"
+            class="w-full text-left flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
+            Logout
+        </button>
+    </form>
 
+</nav>
 
-        <a href="#" class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-          <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M4 13h16v8H4zM6 13V7h6v6M14 7h6M17 4v6" />
-          </svg>
-          Mesin
-        </a>
-
-
-        <a href="#" class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-          <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M3 12v8m6-12v12m6-6v6m6-10v10" />
-          </svg>
-          Monitoring
-        </a>
-
-
-        <a href="#" class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-          <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path d="M9 17v-2h6v2m-6-6h6m2 10H7a2 2 0 01-2-2V5h10l4 4v10a2 2 0 01-2 2z" />
-          </svg>
-          Laporan
-        </a>
-
-
-        <a href="#" class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-          <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1" />
-          </svg>
-          Logout
-        </a>
-      </nav>
     </aside>
 
     <!-- MAIN CONTENT -->

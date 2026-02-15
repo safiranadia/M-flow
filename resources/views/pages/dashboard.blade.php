@@ -2,14 +2,6 @@
 @section('title', '')
 @section('content')
 
-<!-- === Akses ke Mesin === -->
-<div class="flex justify-end mb-4">
-    <a href="{{ route('mesin.index') }}"
-       class="px-4 py-2 rounded-lg bg-purple-600 text-white hover:bg-purple-700 transition">
-        Kelola Mesin
-    </a>
-</div>
-
 <!-- CARD RINGKASAN -->
 <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
 
@@ -28,12 +20,6 @@
         <h2 class="text-3xl font-bold text-blue-600 mt-2">3</h2>
     </div>
 
-    <!-- CARD mesin → clickable -->
-    <div onclick="window.location='{{ route('mesin.index') }}'"
-        class="cursor-pointer bg-white p-6 rounded-lg shadow-md hover:bg-purple-50 transition">
-        <p class="text-sm text-gray-500">Kelola Mesin</p>
-        <h2 class="text-3xl font-bold text-purple-700 mt-2">Mesin</h2>
-    </div>
 
 </div>
 
