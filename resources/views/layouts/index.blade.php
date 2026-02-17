@@ -38,7 +38,7 @@
     </a>
 
     <!-- Jadwal Produksi -->
-    <a href="{{ route('jadwal_produksi.index') }}"
+    <a href="{{ route('jadwal.index') }}"
        class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
         Jadwal Produksi
     </a>
@@ -47,6 +47,12 @@
     <a href="{{ route('monitoring.index') }}"
        class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
         Monitoring
+    </a>
+
+    <!-- Laporan Produksi -->
+    <a href="{{ route('laporan.produksi.index') }}"
+       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
+        Laporan Produksi
     </a>
 
     <!-- Users (kalau admin saja) -->

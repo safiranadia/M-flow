@@ -7,6 +7,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\MesinController;
 use App\Http\Controllers\ProductionScheduleController;
 use App\Http\Controllers\ProductionMonitoringController;
+use App\Http\Controllers\LaporanProduksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,10 +52,10 @@ Route::middleware('auth')->group(function(){
 });
 /*
 |--------------------------------------------------------------------------
-| JADWAL PRODUKSI (CRUD → resource lengkap)
+| JADWAL PRODUKSI
 |--------------------------------------------------------------------------
 */
-Route::resource('jadwal_produksi', ProductionScheduleController::class)
+Route::resource('jadwal', ProductionScheduleController::class)
     ->middleware('auth');
 
 /*
@@ -62,5 +63,16 @@ Route::resource('jadwal_produksi', ProductionScheduleController::class)
 | MONITORING PRODUKSI
 |--------------------------------------------------------------------------
 */
-Route::resource('monitoring', ProductionMonitoringController::class)
-    ->middleware('auth');
+Route::resource('monitoring', ProductionMonitoringController::class);
+
+/*
+|--------------------------------------------------------------------------
+| LAPORAN PRODUKSI (DOWNLOAD PDF)
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth')->group(function() {
+    Route::get('/laporan-produksi', [LaporanProduksiController::class, 'index'])
+        ->name('laporan.produksi.index');
+    Route::get('/laporan-produksi/download', [LaporanProduksiController::class, 'download'])
+        ->name('laporan.produksi.download');
+});

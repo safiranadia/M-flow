@@ -25,7 +25,7 @@ class ProdukController extends Controller
         }
 
         // ✅ arahkan ke FE kamu
-        return view('pages.produksi', compact('produks', 'user'));
+        return view('pages.produk', compact('produks', 'user'));
     }
 
     // form tambah produk

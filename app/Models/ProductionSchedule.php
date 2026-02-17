@@ -30,8 +30,8 @@ class ProductionSchedule extends Model
         return $this->belongsTo(Produk::class, 'produk_id');
     }
 
-    public function monitorings()
+    public function monitoring()
     {
-        return $this->hasMany(ProductionMonitoring::class);
+        return $this->hasOne(ProductionMonitoring::class, 'production_schedule_id');
     }
 }

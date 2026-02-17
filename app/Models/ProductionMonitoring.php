@@ -12,6 +12,7 @@ class ProductionMonitoring extends Model
     protected $fillable = [
         'production_schedule_id',
         'tanggal_produksi',
+        'shift',
         'hasil_produksi',
         'status',
         'keterangan'

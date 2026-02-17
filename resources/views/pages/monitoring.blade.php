@@ -2,138 +2,94 @@
 @section('title', '')
 @section('content')
 
-<div class="flex justify-between items-center mb-6">
-    <h2 class="text-2xl font-bold text-gray-700"></h2>
-    
-</div>
+    <div class="mx-4 md:mx-10">
 
-<div class="bg-white rounded-xl shadow overflow-x-auto">
-    <table class="min-w-full text-sm">
-        <thead class="bg-purple-100">
-            <tr>
-                <th class="p-4 text-left">Kode Mesin</th>
-                <th class="p-4 text-left">Tipe Mesin</th>
-                <th class="p-4 text-left">Nama Produk</th>
-                <th class="p-4 text-left">Tanggal mulai</th>
-                <th class="p-4 text-left">Tanggal selsai</th>
-                <th class="p-4 text-left">Operator</th>
-                <th class="p-4 text-left">Shift</th>
-                <th class="p-4 text-left">Status</th>
-            </tr>
-        </thead>
+        <!-- Card -->
+        <div class="bg-white shadow-lg rounded-xl p-6">
 
-        <tbody class="divide-y">
-            <tr class="hover:bg-gray-50">
-                <td class="p-4">Mc-001</td>
-                <td class="p-4">NISSEI</td>
-                <td class="py-3 px-4">Penggaris 30CM</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">Sukiyo</td>
-                <td class="py-3 px-4">Pagi</td>
-                <td class="p-4">
-                    <span class="px-3 py-1 rounded-full bg-green-100 text-black-700 text-xs">
-                        Produksi
-                    </span>
-                </td>
-            </tr>
+            <!-- Card Header -->
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-semibold text-gray-700">
+                    Monitoring Produksi
+                </h2>
 
-            <tr class="hover:bg-gray-50">
-                <td class="p-4">Mc-001</td>
-                <td class="p-4">NISSEI</td>
-                <td class="py-3 px-4">Penggaris 30CM</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">Sukiyo</td>
-                <td class="py-3 px-4">Pagi</td>
-                <td class="p-4">
-                    <span class="px-3 py-1 rounded-full bg-green-100 text-black-700 text-xs">
-                        Produksi
-                    </span>
-                </td>
-            </tr>
+                <a href="{{ route('monitoring.create') }}"
+                    class="bg-purple-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
+                    + Tambah Monitoring
+                </a>
+            </div>
 
-            <tr class="hover:bg-gray-50">
-                <td class="p-4">Mc-001</td>
-                <td class="p-4">NISSEI</td>
-                <td class="py-3 px-4">Penggaris 30CM</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">Sukiyo</td>
-                <td class="py-3 px-4">Pagi</td>
-                <td class="p-4">
-                    <span class="px-3 py-1 rounded-full bg-green-100 text-black-700 text-xs">
-                        Produksi
-                    </span>
-                </td>
-            </tr>
+            <!-- Table -->
+            <div class="bg-white rounded-xl shadow overflow-x-auto">
+                <table class="min-w-full text-sm">
+                    <thead class="bg-purple-100">
+                        <tr>
+                            <th class="p-4 text-left">Produk</th>
+                            <th class="p-4 text-left">Mesin</th>
+                            <th class="p-4 text-left">Tanggal Produksi</th>
+                            <th class="p-4 text-left">Hasil Produksi</th>
+                            <th class="p-4 text-left">Shift</th>
+                            <th class="p-4 text-left">Status</th>
+                        </tr>
+                    </thead>
 
-            <tr class="hover:bg-gray-50">
-                <td class="p-4">Mc-001</td>
-                <td class="p-4">NISSEI</td>
-                <td class="py-3 px-4">Penggaris 30CM</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">Sukiyo</td>
-                <td class="py-3 px-4">Pagi</td>
-                <td class="p-4">
-                    <span class="px-3 py-1 rounded-full bg-green-100 text-black-700 text-xs">
-                        Produksi
-                    </span>
-                </td>
-            </tr>
+                    <tbody class="divide-y">
+                        @foreach ($monitorings as $monitoring)
+                            <tr class="hover:bg-gray-50">
+                                <td class="py-3 px-4">
+                                    {{ $monitoring->jadwal->produk->nama_produk ?? '-' }}
+                                </td>
 
-            <tr class="hover:bg-gray-50">
-                <td class="p-4">Mc-001</td>
-                <td class="p-4">NISSEI</td>
-                <td class="py-3 px-4">Penggaris 30CM</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">Sukiyo</td>
-                <td class="py-3 px-4">Pagi</td>
-                <td class="p-4">
-                    <span class="px-3 py-1 rounded-full bg-green-100 text-black-700 text-xs">
-                        Produksi
-                    </span>
-                </td>
-            </tr>
+                                <td class="py-3 px-4">
+                                    {{ $monitoring->jadwal->mesin->nama_mesin ?? '-' }}
+                                </td>
 
+                                <td class="py-3 px-4">
+                                    {{ $monitoring->tanggal_produksi }}
+                                </td>
 
-            <tr class="hover:bg-gray-50">
-                <td class="p-4">Mc-001</td>
-                <td class="p-4">NISSEI</td>
-                <td class="py-3 px-4">Penggaris 30CM</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">Sukiyo</td>
-                <td class="py-3 px-4">Pagi</td>
-                <td class="p-4">
-                    <span class="px-3 py-1 rounded-full bg-green-100 text-black-700 text-xs">
-                        Produksi
-                    </span>
-                </td>
-            </tr>
+                                <td class="py-3 px-4">
+                                    {{ $monitoring->hasil_produksi }}
+                                </td>
+                                
+                                <td class="py-3 px-4">
+                                    Shift {{ $monitoring->shift }}
+                                </td>
 
+                                <td class="py-3 px-4">
+                                    <form action="{{ route('monitoring.update', $monitoring->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
 
+                                        <select name="status" onchange="this.form.submit()"
+                                            class="px-3 py-1 rounded-full text-xs border-0 
+                                            @if ($monitoring->status == 'Proses') bg-yellow-100 text-yellow-700
+                                            @elseif($monitoring->status == 'Selesai') bg-green-100 text-green-700
+                                            @else bg-red-100 text-red-700 @endif">
 
-            <tr class="hover:bg-gray-50">
-                <td class="p-4">Mc-001</td>
-                <td class="p-4">NISSEI</td>
-                <td class="py-3 px-4">Penggaris 30CM</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">05-02-2026</td>
-                <td class="py-3 px-4">Sukiyo</td>
-                <td class="py-3 px-4">Pagi</td>
-                <td class="p-4">
-                    <span class="px-3 py-1 rounded-full bg-green-100 text-black-700 text-xs">
-                        Produksi
-                    </span>
-                </td>
-            </tr>
+                                            <option value="Proses" {{ $monitoring->status == 'Proses' ? 'selected' : '' }}>
+                                                Proses
+                                            </option>
 
-            
-        </tbody>
-    </table>
-</div>
+                                            <option value="Selesai"
+                                                {{ $monitoring->status == 'Selesai' ? 'selected' : '' }}>
+                                                Selesai
+                                            </option>
+
+                                            <option value="Gagal" {{ $monitoring->status == 'Gagal' ? 'selected' : '' }}>
+                                                Gagal
+                                            </option>
+
+                                        </select>
+                                    </form>
+                                </td>
+
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 @endsection
