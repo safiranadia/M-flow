@@ -63,6 +63,26 @@
             Monitoring
         </a>
 
+        <!-- Laporan Produksi -->
+        <a href="{{ route('laporan.produksi.index') }}"
+           class="flex items-center gap-3 px-6 py-3
+           {{ request()->routeIs('laporan.produksi.*') 
+                ? 'bg-purple-100 text-purple-700 font-semibold border-l-4 border-purple-600'
+                : 'text-gray-700 hover:bg-purple-100' }}">
+            Laporan Produksi
+        </a>
+
+        <!-- Users (Admin Only) -->
+        @if(auth()->user()->role == 'admin_planning')
+        <a href="{{ route('users.index') }}"
+           class="flex items-center gap-3 px-6 py-3
+           {{ request()->routeIs('users.*') 
+                ? 'bg-purple-100 text-purple-700 font-semibold border-l-4 border-purple-600'
+                : 'text-gray-700 hover:bg-purple-100' }}">
+            Users
+        </a>
+        @endif
+
         <!-- Logout -->
         <form action="/logout" method="POST">
             @csrf

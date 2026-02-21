@@ -15,18 +15,6 @@
             @csrf
             @method('PUT')
 
-            <!-- Kode Produksi -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Kode Produksi
-                </label>
-                <input 
-                    type="text" 
-                    name="kode_produksi"
-                    value=""
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-            </div>
-
             <!-- Nama Produk -->
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-600 mb-1">
@@ -39,13 +27,13 @@
                     class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
             </div>
 
-            <!-- Kode Mesin -->
+            <!-- Nama_mesin -->
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Kode Mesin
+                    Nama Mesin
                 </label>
                 <select 
-                    name="kode_mesin"
+                    name="nama_mesin"
                     class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
                     
                 </select>
@@ -74,18 +62,6 @@
                         value=""
                         class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
                 </div>
-            </div>
-
-            <!-- Operator -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Operator
-                </label>
-                <input 
-                    type="text" 
-                    name="operator"
-                    value=""
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
             </div>
 
             <!-- Shift -->

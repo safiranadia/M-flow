@@ -10,50 +10,67 @@ class ProductionMonitoringController extends Controller
 {
     public function index()
     {
-        $monitorings = ProductionMonitoring::with('jadwal')->latest()->get();
-        return view('monitoring.index', compact('monitorings'));
+        $monitorings = ProductionMonitoring::with([
+            'jadwal.mesin',
+            'jadwal.produk'
+        ])->orderBy('tanggal_produksi', 'desc')
+        ->get();
+        return view('pages.monitoring', compact('monitorings'));
     }
 
     public function create()
     {
-        $jadwals = ProductionSchedule::all();
-        return view('monitoring.create', compact('jadwals'));
+        $jadwals = ProductionSchedule::wheredoesntHave('monitoring')
+            ->with(['mesin', 'produk'])
+            ->get();
+        return view('pages.from-create-monitoring', compact('jadwals'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'production_schedule_id' => 'required',
-            'tanggal_produksi' => 'required|date',
-            'hasil_produksi' => 'required|integer',
+        'production_schedule_id' => 'required|exists:production_schedules,id',
+        'tanggal_produksi' => 'required|date',
+        'hasil_produksi' => 'required|integer',
+        'status' => 'required|string',
+    ]);
+    
+    $cek = ProductionMonitoring::where('production_schedule_id', $request->production_schedule_id)
+        ->first();
+        if ($cek) {
+            return redirect()->route('monitoring.index')
+            ->with('error', 'Monitoring untuk jadwal ini sudah ada!');
+        }
+        
+        ProductionMonitoring::create([
+        'production_schedule_id' => $request->production_schedule_id,
+        'tanggal_produksi' => $request->tanggal_produksi,
+        'hasil_produksi' => $request->hasil_produksi,
+        'shift' => $request->shift,
+        'status' => $request->status,
         ]);
-
-        ProductionMonitoring::create($request->all());
+        
         return redirect()->route('monitoring.index')
-            ->with('success', 'Data Mnitoring produksi berhasil disimpan');
-    }
+        ->with('success', 'Monitoring berhasil disimpan');
+}
+
 
     public function edit($id)
     {
         $monitorings = ProductionMonitoring::findOrFail($id);
         $jadwals = ProductionSchedule::all();
-        return view('monitoring.edit', compact('monitorings', 'jadwals'));
+        return view('pages.monitoring_edit', compact('monitorings', 'jadwals'));
     }
 
     public function update(Request $request, $id)
-    {
-        $request->validate([
-            'hasil_produksi' => 'required|integer',
-            'status' => 'required|string',
-        ]);
+{
+    $monitoring = ProductionMonitoring::findOrFail($id);
 
-        $monitorings = ProductionMonitoring::findOrFail($id);
-        $monitorings->update([
-            'hasil_produksi' => $request->hasil_produksi,
-            'status' => $request->status
-        ]);
+    $monitoring->update([
+        'status' => $request->status
+    ]);
 
-        return redirect()->route('monitoring.index')
-            ->with('success', 'Data Monitoring & status berhasil diperbarui');
-    }
+    return redirect()->route('monitoring.index');
+}
+
 }

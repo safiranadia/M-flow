@@ -11,34 +11,42 @@ class ProductionScheduleController extends Controller
 {
     public function index()
     {
-        $schedules = ProductionSchedule::with(['mesin', 'produk'])->get();
-        return view('jadwal_produksi.index', compact('schedules'));
+        $jadwal = ProductionSchedule::with(['mesin', 'produk'])->get();
+        return view('pages.jadwal', compact('jadwal'));
     }
 
     public function create ()
     {
         $mesins = Mesin::all();
         $produks = Produk::all();
-        return view('jadwal_produksi.create', compact('mesins', 'produks'));
+        return view('pages.from-create-jadwal', compact('mesins', 'produks'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request) 
     {
-        ProductionSchedule::create($request->all());
-        return redirect()->route('jadwal_produksi.index');
+        ProductionSchedule::create([
+            'produk_id' => $request->produk_id,
+            'mesin_id' => $request->mesin_id,
+            'tanggal_mulai' => $request->tanggal_mulai,
+            'tanggal_selesai' => $request->tanggal_selesai,
+            'shift' => $request->shift,
+        ]);
+        return redirect()->route('jadwal.index');
     }
 
     public function edit ($id) 
     {
         $jadwal = ProductionSchedule::findOrFail($id);
-        return view('jadwal_produksi.edit', compact('jadwal'));
+        $mesin = Mesin::all();
+        $produk = Produk::all();
+        return view('pages.from-edit-jadwal', compact('jadwal'));
     }
 
     public function update (Request $request, $id)
     {
         $jadwal = ProductionSchedule::findOrFail($id);
         $jadwal->update($request->all());
-        return redirect()->route ('jadwal_produksi.index');
+        return redirect()->route('jadwal.index');
     }
 
     public function destroy ($id)
@@ -47,7 +55,7 @@ class ProductionScheduleController extends Controller
         $jadwal->delete();
 
         return redirect()
-            ->route('jadwal_produksi.index')
+            ->route('jadwal.index')
             ->with('success', 'Jadwal produksi berhasil dihapus.');
     }
 }

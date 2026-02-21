@@ -1,5 +1,5 @@
 @extends('layouts.index')
-@section('title','')
+@section('title','Tambah Rencana Produksi')
 @section('content')
 
 <div class="mx-4 md:mx-10">
@@ -11,65 +11,48 @@
         </h2>
 
         <!-- Form -->
-        <form>
-
-            <!-- Kode Produksi -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Kode Produksi
-                </label>
-                <input type="text" placeholder="PRD-001"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-            </div>
+        <form action="{{ route('jadwal.store') }}" method="POST">
+            @csrf
 
             <!-- Nama Produk -->
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-600 mb-1">
                     Nama Produk
                 </label>
-                <input type="text" placeholder="Penggaris 30CM"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                <select name="produk_id" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                    @foreach($produks as $produk)
+                        <option value="{{ $produk->id }}">{{ $produk->nama_produk }}</option>
+                    @endforeach
+                </select>
             </div>
 
             <!-- Kode Mesin -->
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Kode Mesin
+                    Nama Mesin
                 </label>
-                <select
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                    <option>MC-001</option>
-                    <option>MC-002</option>
-                    <option>MC-003</option>
+                <select name="mesin_id" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                    @foreach($mesins as $mesin)
+                        <option value="{{ $mesin->id }}">{{ $mesin->nama_mesin }}</option>
+                    @endforeach
                 </select>
             </div>
 
-            <!-- Tanggal -->
+            <!-- Tanggal Mulai -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                 <div>
                     <label class="block text-sm font-medium text-gray-600 mb-1">
                         Tanggal Mulai
                     </label>
-                    <input type="date"
-                        class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                    <input type="date" name="tanggal_mulai" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
                 </div>
 
                 <div>
                     <label class="block text-sm font-medium text-gray-600 mb-1">
                         Tanggal Selesai
                     </label>
-                    <input type="date"
-                        class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                    <input type="date" name="tanggal_selesai" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
                 </div>
-            </div>
-
-            <!-- Operator -->
-            <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-600 mb-1">
-                    Operator
-                </label>
-                <input type="text" placeholder="Sukiyo"
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
             </div>
 
             <!-- Shift -->
@@ -77,17 +60,16 @@
                 <label class="block text-sm font-medium text-gray-600 mb-1">
                     Shift
                 </label>
-                <select
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                    <option>Pagi</option>
-                    <option>Sore</option>
-                    <option>Malam</option>
+                <select name="shift" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                    <option value="1">Shift 1</option>
+                    <option value="2">Shift 2</option>
+                    <option value="3">Shift 3</option>
                 </select>
             </div>
 
             <!-- Button -->
             <div class="flex justify-end gap-3">
-                <a href="#"
+                <a href="{{ route('jadwal.index') }}"
                     class="px-4 py-2 rounded-lg border text-gray-600 hover:bg-gray-100">
                     Batal
                 </a>

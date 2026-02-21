@@ -9,26 +9,24 @@
         <!-- Card Header -->
         <div class="flex items-center justify-between mb-6">
             <h2 class="text-xl font-semibold text-gray-700">
-                Rencana Produksi
+                Jadwal Produksi
             </h2>
 
-            <a href=""
+            <a href="{{ route('jadwal.create') }}"
                 class="bg-purple-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
-                + Tambah Rencana
+                + Tambah Jadwal
             </a>
         </div>
 
         <!-- Table -->
-        <div class="overflow-x-auto">
-            <table class="w-full border-collapse">
-                <thead>
-                    <tr class="bg-purple-100 text-gray-600 text-sm uppercase">
-                        <th class="py-3 px-4 text-left">Kode Produksi</th>
+        <div class="bg-white rounded-xl shadow overflow-x-auto">
+            <table class="min-w-full text-sm">
+                <thead class="bg-purple-100 ">
+                    <tr>
                         <th class="py-3 px-4 text-left">Nama Produk</th>
-                        <th class="py-3 px-4 text-left">Kode Mesin</th>
-                        <th class="py-3 px-4 text-left">Tanggal mulai</th>
-                        <th class="py-3 px-4 text-left">Tanggal selsai</th>
-                        <th class="py-3 px-4 text-left">Operator</th>
+                        <th class="py-3 px-4 text-left">Mesin</th>
+                        <th class="py-3 px-4 text-left">Tanggal Mulai</th>
+                        <th class="py-3 px-4 text-left">Tanggal Selesai</th>
                         <th class="py-3 px-4 text-left">Shift</th>
                         <th class="py-3 px-4 text-left">Aksi</th>
 
@@ -37,320 +35,25 @@
                 </thead>
 
                 <tbody class="text-gray-700 text-sm">
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-001</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-001</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Sukiyo</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-002</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-002</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Suryatna</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-003</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-003</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Supriyatna</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-001</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-001</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Sukiyo</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-002</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-002</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Suryatna</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-003</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-003</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Supriyatna</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-001</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-001</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Sukiyo</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-002</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-002</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Suryatna</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-003</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-003</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Supriyatna</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-001</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-001</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Sukiyo</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-002</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-002</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Suryatna</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-003</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-003</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Supriyatna</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-001</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-001</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Sukiyo</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-002</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-002</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Suryatna</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
-
-                    <tr class="border-b hover:bg-gray-50">
-                        <td class="py-3 px-4">PRD-003</td>
-                        <td class="py-3 px-4">Penggaris 30CM</td>
-                        <td class="py-3 px-4">Mc-003</td>
-                        <td class="py-3 px-4">01-02-2026</td>
-                        <td class="py-3 px-4">05-02-2026</td>
-                        <td class="py-3 px-4">Supriyatna</td>
-                        <td class="py-3 px-4">Pagi</td>
-                        <td class="py-3 px-4">
-                            <div class="flex gap-2">
-                                <a href="#" class="px-3 py-1 bg-blue-100 text-blue-700 rounded-lg text-xs hover:bg-blue-200">
-                                    Edit
-                                </a>
-                                <button class="px-3 py-1 bg-red-100 text-red-700 rounded-lg text-xs hover:bg-red-200">
-                                    Delete
-                                </button>
-                            </div>
-                        </td>
-
-                    </tr>
+                    @foreach ($jadwal as $item)
+                        <tr class="border-b hover:bg-gray-50">
+                            <td class="py-3 px-4">{{ $item->produk->nama_produk ?? '-' }}</td>
+                            <td class="py-3 px-4">{{ $item->mesin->nama_mesin ?? '-' }}</td>
+                            <td class="py-3 px-4">{{ $item->tanggal_mulai }}</td>
+                            <td class="py-3 px-4">{{ $item->tanggal_selesai }}</td>
+                            <td class="py-3 px-4">{{ $item->shift }}</td>
+                            <td class="py-3 px-4">
+                                <div class="flex gap-2">
+                                    <a href="{{ route('jadwal.edit', $item->id) }}" class="text-blue-500 hover:text-blue-700 mr-2">Edit</a>
+                                    <form action="{{ route('jadwal.destroy', $item->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-500 hover:text-red-700">Hapus</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
