@@ -14,24 +14,39 @@ class MesinController extends Controller
     }
 
     // GET: mesin list (view + json optional)
-    public function index(Request $request)
-    {
-        $user = Auth::user();
+public function index(Request $request)
+{
+    $user = Auth::user();
+    $search = $request->search;
 
-        $mesins = ($user->role === 'admin_planning')
-            ? Mesin::orderBy('nama_mesin')->get()
-            : Mesin::where('status_mesin', 'aktif')->orderBy('nama_mesin')->get();
+    // Query dasar berdasarkan role
+    $query = ($user->role === 'admin_planning')
+        ? Mesin::query()
+        : Mesin::where('status_mesin', 'aktif');
 
-        // kalau FE minta json
-        if ($request->wantsJson()) {
-            return response()->json([
-                'status' => true,
-                'data' => $mesins
-            ]);
-        }
-
-        return view('pages.mesin', compact('mesins', 'user'));
+    // FILTER SEARCH
+    if ($search) {
+        $query->where(function ($q) use ($search) {
+            $q->where('nama_mesin', 'like', '%' . $search . '%')
+              ->orWhere('tipe_mesin', 'like', '%' . $search . '%')
+              ->orWhere('lokasi', 'like', '%' . $search . '%')
+              ->orWhere('status_mesin', 'like', '%' . $search . '%');
+        });
     }
+
+    $mesins = $query->orderBy('nama_mesin')->get();
+
+    // kalau FE minta json
+    if ($request->wantsJson()) {
+        return response()->json([
+            'status' => true,
+            'data' => $mesins
+        ]);
+    }
+
+    return view('pages.mesin', compact('mesins', 'user'));
+}
+
 
     // GET: detail mesin
     public function show(Request $request, $id)

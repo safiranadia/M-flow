@@ -11,7 +11,6 @@
 <body class="bg-gray-100">
   <div class="flex min-h-screen">
 
-
     <aside class="w-64 bg-white shadow-md">
       <div class="p-6 text-2xl font-bold text-purple-700">
         MachineFlow
@@ -19,55 +18,61 @@
 
       <nav class="mt-6 text-sm">
 
-    <!-- Dashboard -->
-    <a href="{{ route('dashboard') }}"
-       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-        Dashboard
-    </a>
+        <!-- Dashboard -->
+        <a href="{{ route('dashboard') }}"
+           class="flex items-center gap-3 px-6 py-3
+           {{ request()->routeIs('dashboard') 
+                ? 'bg-purple-100 text-purple-700 font-semibold border-l-4 border-purple-600'
+                : 'text-gray-700 hover:bg-purple-100' }}">
+            Dashboard
+        </a>
 
-    <!-- Produk -->
-    <a href="{{ route('produk.index') }}"
-       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-        Produk
-    </a>
+        <!-- Produk -->
+        <a href="{{ route('produk.index') }}"
+           class="flex items-center gap-3 px-6 py-3
+           {{ request()->routeIs('produk.*') 
+                ? 'bg-purple-100 text-purple-700 font-semibold border-l-4 border-purple-600'
+                : 'text-gray-700 hover:bg-purple-100' }}">
+            Produk
+        </a>
 
-    <!-- Mesin -->
-    <a href="{{ route('mesin.index') }}"
-       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-        Mesin
-    </a>
+        <!-- Mesin -->
+        <a href="{{ route('mesin.index') }}"
+           class="flex items-center gap-3 px-6 py-3
+           {{ request()->routeIs('mesin.*') 
+                ? 'bg-purple-100 text-purple-700 font-semibold border-l-4 border-purple-600'
+                : 'text-gray-700 hover:bg-purple-100' }}">
+            Mesin
+        </a>
 
-    <!-- Jadwal Produksi -->
-    <a href="{{ route('jadwal_produksi.index') }}"
-       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-        Jadwal Produksi
-    </a>
+        <!-- Jadwal Produksi -->
+        <a href="{{ route('jadwal_produksi.index') }}"
+           class="flex items-center gap-3 px-6 py-3
+           {{ request()->routeIs('jadwal_produksi.*') 
+                ? 'bg-purple-100 text-purple-700 font-semibold border-l-4 border-purple-600'
+                : 'text-gray-700 hover:bg-purple-100' }}">
+            Jadwal Produksi
+        </a>
 
-    <!-- Monitoring -->
-    <a href="{{ route('monitoring.index') }}"
-       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-        Monitoring
-    </a>
+        <!-- Monitoring -->
+        <a href="{{ route('monitoring.index') }}"
+           class="flex items-center gap-3 px-6 py-3
+           {{ request()->routeIs('monitoring.*') 
+                ? 'bg-purple-100 text-purple-700 font-semibold border-l-4 border-purple-600'
+                : 'text-gray-700 hover:bg-purple-100' }}">
+            Monitoring
+        </a>
 
-    <!-- Users (kalau admin saja) -->
-    @if(auth()->user()->role == 'admin_planning')
-    <a href="{{ route('users.index') }}"
-       class="flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-        Users
-    </a>
-    @endif
+        <!-- Logout -->
+        <form action="/logout" method="POST">
+            @csrf
+            <button type="submit"
+                class="w-full text-left flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
+                Logout
+            </button>
+        </form>
 
-    <!-- Logout -->
-    <form action="/logout" method="POST">
-        @csrf
-        <button type="submit"
-            class="w-full text-left flex items-center gap-3 px-6 py-3 text-gray-700 hover:bg-purple-100">
-            Logout
-        </button>
-    </form>
-
-</nav>
-
+      </nav>
     </aside>
 
     <!-- MAIN CONTENT -->
@@ -75,13 +80,17 @@
 
       <!-- TOP NAVBAR -->
       <header class="bg-white shadow-md p-4 flex justify-between items-center">
-        <h1 class="text-xl font-bold text-purple-700">@yield('title')</h1>
-        <div class="flex items-center gap-4">
-          <input type="text" placeholder="Search..." class="px-4 py-2 border rounded-lg">
-          <div class="w-10 h-10 rounded-full bg-purple-500 flex items-center justify-center text-white font-bold">
-            AD
+          <h1 class="text-xl font-bold text-purple-700">@yield('title')</h1>
+
+          <div class="flex items-center gap-4">
+              <form method="GET" action="{{ url()->current() }}">
+                  <input type="text"
+                         name="search"
+                         value="{{ request('search') }}"
+                         placeholder="Search..."
+                         class="px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-400">
+              </form>
           </div>
-        </div>
       </header>
 
       <!-- CONTENT -->
@@ -91,7 +100,7 @@
 
       <!-- FOOTER -->
       <footer class="bg-white p-4 text-center text-sm text-gray-400 border-t">
-        © 2025 MachineFlow. All rights reserved.
+        © 2026 MachineFlow. All rights reserved.
       </footer>
 
     </div>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('production_schedules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mesin_id')->constrained('mesins');
+            $table->foreignId('mesin_id')->constrained('mesin');
             $table->foreignId('produk_id')->constrained('produk');
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');

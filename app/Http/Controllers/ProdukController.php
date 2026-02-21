@@ -13,19 +13,30 @@ class ProdukController extends Controller
         $this->middleware('auth');
     }
 
-    // tampilkan daftar produk
-    public function index()
+    // tampilkan daftar produk + search
+    public function index(Request $request)
     {
         $user = Auth::user();
+        $search = $request->search;
 
-        if ($user->role === 'admin_planning') {
-            $produks = Produk::all();
-        } else {
-            $produks = Produk::where('target_produksi', '>', 0)->get();
+        $query = Produk::query();
+
+        // Batasi jika bukan admin_planning
+        if ($user->role !== 'admin_planning') {
+            $query->where('target_produksi', '>', 0);
         }
 
-        // ✅ arahkan ke FE kamu
-        return view('pages.produksi', compact('produks', 'user'));
+        // Fitur search
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_produk', 'like', '%' . $search . '%')
+                  ->orWhere('spesifikasi', 'like', '%' . $search . '%');
+            });
+        }
+
+        $produks = $query->get();
+
+        return view('pages.produk', compact('produks', 'user', 'search'));
     }
 
     // form tambah produk
@@ -35,7 +46,7 @@ class ProdukController extends Controller
             abort(403);
         }
 
-        return view('pages.from-create-produksi');
+        return view('pages.from-create-produk');
     }
 
     // simpan produk baru
@@ -53,7 +64,8 @@ class ProdukController extends Controller
 
         Produk::create($request->all());
 
-        return redirect()->route('produk.index')->with('success', 'Produk berhasil ditambahkan.');
+        return redirect()->route('produk.index')
+            ->with('success', 'Produk berhasil ditambahkan.');
     }
 
     // form edit produk
@@ -65,7 +77,7 @@ class ProdukController extends Controller
 
         $produk = Produk::findOrFail($id);
 
-        return view('pages.from-edit-produksi', compact('produk'));
+        return view('pages.from-edit-produk', compact('produk'));
     }
 
     // update produk
@@ -84,7 +96,8 @@ class ProdukController extends Controller
         $produk = Produk::findOrFail($id);
         $produk->update($request->all());
 
-        return redirect()->route('produk.index')->with('success', 'Produk berhasil diupdate.');
+        return redirect()->route('produk.index')
+            ->with('success', 'Produk berhasil diupdate.');
     }
 
     // hapus produk
@@ -97,6 +110,7 @@ class ProdukController extends Controller
         $produk = Produk::findOrFail($id);
         $produk->delete();
 
-        return redirect()->route('produk.index')->with('success', 'Produk berhasil dihapus.');
+        return redirect()->route('produk.index')
+            ->with('success', 'Produk berhasil dihapus.');
     }
 }
