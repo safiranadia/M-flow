@@ -18,9 +18,9 @@ class DashboardController extends Controller
         $totalProduk = $schedules->pluck('produk')->unique()->count();
         $totalMesin = $schedules->pluck('mesin')->unique()->count();
         $totalJadwal = $schedules->count();
-        $totalHariIni = $schedules->sum(function ($schedule) {
-            return $schedule->monitoring->sum('jumlah_hasil');
-        });
+        $totalHariIni = $schedules->filter(function ($schedule) use ($today) {
+            return $schedule->tanggal_mulai <= $today && $schedule->tanggal_selesai >= $today;
+        })->count();
 
         
 

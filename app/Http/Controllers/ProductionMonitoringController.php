@@ -46,7 +46,6 @@ class ProductionMonitoringController extends Controller
         'production_schedule_id' => $request->production_schedule_id,
         'tanggal_produksi' => $request->tanggal_produksi,
         'hasil_produksi' => $request->hasil_produksi,
-        'shift' => $request->shift,
         'status' => $request->status,
         ]);
         
