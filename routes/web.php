@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProdukController;
@@ -36,8 +37,7 @@ Route::post('/logout', [AuthController::class, 'logout'])
 | DASHBOARD
 |--------------------------------------------------------------------------
 */
-Route::get('/dashboard', fn () => view('pages.dashboard'))
-    ->middleware('auth')
+Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
 
 /*
@@ -55,8 +55,9 @@ Route::middleware('auth')->group(function(){
 | JADWAL PRODUKSI
 |--------------------------------------------------------------------------
 */
-Route::resource('jadwal', ProductionScheduleController::class)
+Route::resource('jadwal_produksi', ProductionScheduleController::class)
     ->middleware('auth');
+
 
 /*
 |--------------------------------------------------------------------------

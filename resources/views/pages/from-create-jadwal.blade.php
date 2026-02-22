@@ -11,7 +11,7 @@
         </h2>
 
         <!-- Form -->
-        <form action="{{ route('jadwal.store') }}" method="POST">
+        <form action="{{ route('jadwal_produksi.store') }}" method="POST">
             @csrf
 
             <!-- Nama Produk -->
@@ -69,7 +69,7 @@
 
             <!-- Button -->
             <div class="flex justify-end gap-3">
-                <a href="{{ route('jadwal.index') }}"
+                <a href="{{ route('jadwal_produksi.index') }}"
                     class="px-4 py-2 rounded-lg border text-gray-600 hover:bg-gray-100">
                     Batal
                 </a>

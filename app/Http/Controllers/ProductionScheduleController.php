@@ -31,7 +31,7 @@ class ProductionScheduleController extends Controller
             'tanggal_selesai' => $request->tanggal_selesai,
             'shift' => $request->shift,
         ]);
-        return redirect()->route('jadwal.index');
+        return redirect()->route('jadwal_produksi.index');
     }
 
     public function edit ($id) 
@@ -39,14 +39,14 @@ class ProductionScheduleController extends Controller
         $jadwal = ProductionSchedule::findOrFail($id);
         $mesin = Mesin::all();
         $produk = Produk::all();
-        return view('pages.from-edit-jadwal', compact('jadwal'));
+        return view('pages.from-edit-jadwal', compact('jadwal', 'mesin', 'produk'));
     }
 
     public function update (Request $request, $id)
     {
         $jadwal = ProductionSchedule::findOrFail($id);
         $jadwal->update($request->all());
-        return redirect()->route('jadwal.index');
+        return redirect()->route('jadwal_produksi.index');
     }
 
     public function destroy ($id)
@@ -55,7 +55,7 @@ class ProductionScheduleController extends Controller
         $jadwal->delete();
 
         return redirect()
-            ->route('jadwal.index')
+            ->route('jadwal_produksi.index')
             ->with('success', 'Jadwal produksi berhasil dihapus.');
     }
 }

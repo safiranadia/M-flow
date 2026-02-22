@@ -37,13 +37,13 @@ class LaporanProduksiController extends Controller
 
         // Rekap berdasarkan shift dari jadwal
         $rekap = [
-            'Pagi' => $monitorings->filter(fn($m) => optional($m->jadwal)->shift === 'Pagi')
+            '1' => $monitorings->filter(fn($m) => optional($m->jadwal)->shift === '1')
                            ->sum('hasil_produksi'),
-            'Sore' => $monitorings->filter(fn($m) => optional($m->jadwal)->shift === 'Sore')
+            '2' => $monitorings->filter(fn($m) => optional($m->jadwal)->shift === '2')
                            ->sum('hasil_produksi'),
-            'Malam' => $monitorings->filter(fn($m) => optional($m->jadwal)->shift === 'Malam')
+            '3' => $monitorings->filter(fn($m) => optional($m->jadwal)->shift === '3')
                             ->sum('hasil_produksi'),
-];
+            ];
 
         $total = $monitorings->sum('hasil_produksi');
         $pdf = Pdf::loadView('laporan.produksi_pdf', compact(

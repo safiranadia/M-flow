@@ -12,7 +12,7 @@
                 Jadwal Produksi
             </h2>
 
-            <a href="{{ route('jadwal.create') }}"
+            <a href="{{ route('jadwal_produksi.create') }}"
                 class="bg-purple-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
                 + Tambah Jadwal
             </a>
@@ -44,8 +44,8 @@
                             <td class="py-3 px-4">{{ $item->shift }}</td>
                             <td class="py-3 px-4">
                                 <div class="flex gap-2">
-                                    <a href="{{ route('jadwal.edit', $item->id) }}" class="text-blue-500 hover:text-blue-700 mr-2">Edit</a>
-                                    <form action="{{ route('jadwal.destroy', $item->id) }}" method="POST" class="inline">
+                                    <a href="{{ route('jadwal_produksi.edit', $item->id) }}" class="text-blue-500 hover:text-blue-700 mr-2">Edit</a>
+                                    <form action="{{ route('jadwal_produksi.destroy', $item->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="text-red-500 hover:text-red-700">Hapus</button>

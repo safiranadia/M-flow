@@ -16,9 +16,9 @@
 
 <h4>Rekap Per Shift</h4>
 <ul>
-    <li>Pagi : {{ $rekap['Pagi'] ?? 0 }}</li>
-    <li>Sore : {{ $rekap['Sore'] ?? 0 }}</li>
-    <li>Malam : {{ $rekap['Malam'] ?? 0 }}</li>
+    <li>Shift 1 : {{ $rekap['1'] ?? 0 }}</li>
+    <li>Shift 2 : {{ $rekap['2'] ?? 0 }}</li>
+    <li>Shift 3 : {{ $rekap['3'] ?? 0 }}</li>
 </ul>
 
 <h4>Total Produksi : {{ $total }}</h4>
@@ -38,7 +38,7 @@
         <td>{{ $m->jadwal->produk->nama_produk ?? '-' }}</td>
         <td>{{ $m->jadwal->mesin->nama_mesin ?? '-' }}</td>
         <td>{{ $m->tanggal_produksi }}</td>
-        <td>Shift{{ $m->jadwal->shift }}</td>
+        <td>Shift {{ $m->jadwal->shift ?? '-' }}</td>
         <td>{{ $m->hasil_produksi }}</td>
         <td>{{ $m->status }}</td>
     </tr>

@@ -53,7 +53,7 @@
                                 </td>
                                 
                                 <td class="py-3 px-4">
-                                    Shift {{ $monitoring->shift }}
+                                    Shift {{ $monitoring->jadwal->shift ?? '-'   }}
                                 </td>
 
                                 <td class="py-3 px-4">

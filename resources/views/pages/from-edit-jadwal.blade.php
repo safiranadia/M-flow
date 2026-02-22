@@ -11,7 +11,7 @@
         </h2>
 
         <!-- Form -->
-        <form action="" method="POST">
+        <form action="{{ route('jadwal_produksi.update', $jadwal->id) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -20,12 +20,13 @@
                 <label class="block text-sm font-medium text-gray-600 mb-1">
                     Nama Produk
                 </label>
-                <input 
-                    type="text" 
-                    name="nama_produk"
-                    value=""
-                    class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-            </div>
+                <select name="produk_id" class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                    @foreach($produk as $item)
+                        <option value="{{ $item->id }}" {{ $jadwal->produk_id == $item->id ? 'selected' : '' }}>
+                            {{ $item->nama_produk }}
+                        </option>
+                    @endforeach
+                </select>
 
             <!-- Nama_mesin -->
             <div class="mb-4">
@@ -33,9 +34,13 @@
                     Nama Mesin
                 </label>
                 <select 
-                    name="nama_mesin"
+                    name="mesin_id"
                     class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                    
+                    @foreach($mesin as $item)
+                        <option value="{{ $item->id }}" {{ $jadwal->mesin_id == $item->id ? 'selected' : '' }}>
+                            {{ $item->nama_mesin }}
+                        </option>
+                    @endforeach
                 </select>
             </div>
 
@@ -72,7 +77,9 @@
                 <select 
                     name="shift"
                     class="w-full rounded-lg border border-gray-300 px-4 py-2 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-                    
+                    <option value="1" {{ $jadwal->shift == 1 ? 'selected' : '' }}>Shift 1</option>
+                    <option value="2" {{ $jadwal->shift == 2 ? 'selected' : '' }}>Shift 2</option>
+                    <option value="3" {{ $jadwal->shift == 3 ? 'selected' : '' }}>Shift 3</option>
                 </select>
             </div>
 
