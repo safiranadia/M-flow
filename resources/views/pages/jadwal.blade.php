@@ -11,11 +11,12 @@
             <h2 class="text-xl font-semibold text-gray-700">
                 Jadwal Produksi
             </h2>
-
+            @if(auth()->user()->role == 'admin_planning')
             <a href="{{ route('jadwal_produksi.create') }}"
                 class="bg-purple-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">
                 + Tambah Jadwal
             </a>
+            @endif
         </div>
 
         <!-- Table -->
@@ -28,9 +29,9 @@
                         <th class="py-3 px-4 text-left">Tanggal Mulai</th>
                         <th class="py-3 px-4 text-left">Tanggal Selesai</th>
                         <th class="py-3 px-4 text-left">Shift</th>
+                        @if(auth()->user()->role == 'admin_planning')
                         <th class="py-3 px-4 text-left">Aksi</th>
-
-
+                        @endif
                     </tr>
                 </thead>
 
@@ -42,6 +43,7 @@
                             <td class="py-3 px-4">{{ $item->tanggal_mulai }}</td>
                             <td class="py-3 px-4">{{ $item->tanggal_selesai }}</td>
                             <td class="py-3 px-4">{{ $item->shift }}</td>
+                            @if(auth()->user()->role == 'admin_planning')
                             <td class="py-3 px-4">
                                 <div class="flex gap-2">
                                     <a href="{{ route('jadwal_produksi.edit', $item->id) }}" class="text-blue-500 hover:text-blue-700 mr-2">Edit</a>
@@ -52,6 +54,7 @@
                                     </form>
                                 </div>
                             </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

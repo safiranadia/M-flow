@@ -17,6 +17,9 @@ class ProductionScheduleController extends Controller
 
     public function create ()
     {
+        if (auth()->user()->role !== 'admin_planning') {
+            abort(403);
+        }
         $mesins = Mesin::all();
         $produks = Produk::all();
         return view('pages.from-create-jadwal', compact('mesins', 'produks'));
@@ -24,6 +27,9 @@ class ProductionScheduleController extends Controller
 
     public function store(Request $request) 
     {
+        if (auth()->user()->role !== 'admin_planning') {
+            abort(403);
+        }
         ProductionSchedule::create([
             'produk_id' => $request->produk_id,
             'mesin_id' => $request->mesin_id,

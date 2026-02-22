@@ -55,8 +55,9 @@ Route::middleware('auth')->group(function(){
 | JADWAL PRODUKSI
 |--------------------------------------------------------------------------
 */
-Route::resource('jadwal_produksi', ProductionScheduleController::class)
-    ->middleware('auth');
+Route::middleware('auth')->group(function() {
+    Route::resource('jadwal_produksi', ProductionScheduleController::class);
+});
 
 
 /*
