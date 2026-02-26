@@ -54,8 +54,8 @@
     <table class="w-full border-collapse">
         <thead>
             <tr class="bg-purple-100 text-left">
-                <th class="p-3">Kode Mesin</th>
                 <th class="p-3">Nama Produk</th>
+                <th class="p-3">Mesin</th>
                 <th class="p-3">Shift</th>
                 <th class="p-3">Periode</th>
             </tr>
@@ -63,8 +63,8 @@
         <tbody>
             @forelse($schedules as $schedule)
             <tr class="border-t">
-                <td class="p-3">{{ $schedule->mesin->kode_mesin ?? '-' }}</td>
                 <td class="p-3">{{ $schedule->produk->nama_produk ?? '-' }}</td>
+                <td class="p-3">{{ $schedule->mesin->nama_mesin ?? '-' }}</td>
                 <td class="p-3 capitalize">{{ $schedule->shift }}</td>
                 <td class="p-3">
                     {{ $schedule->tanggal_mulai }} s/d {{ $schedule->tanggal_selesai }}

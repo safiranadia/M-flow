@@ -1,5 +1,5 @@
 @extends('layouts.index')
-@section('title', '')
+@section('title', 'Monitoring Produksi')
 @section('content')
 
     <div class="mx-4 md:mx-10">

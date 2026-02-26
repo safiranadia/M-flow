@@ -1,4 +1,5 @@
 @extends('layouts.index')
+@section('title','Laporan Produksi')
 
 @section('content')
 
